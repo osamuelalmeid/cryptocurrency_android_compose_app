@@ -2,11 +2,20 @@ package com.samuelalmeida.cryptocurrencyandroidcompose.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.samuelalmeida.cryptocurrencyandroidcompose.R
+import androidx.activity.compose.setContent
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import com.samuelalmeida.cryptocurrencyandroidcompose.presentation.theme.CryptocurrencyComposeTheme
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContent {
+            CryptocurrencyComposeTheme() {
+                Surface(color = MaterialTheme.colors.background) {
+
+                }
+            }
+        }
     }
 }
