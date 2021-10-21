@@ -1,7 +1,8 @@
-package com.samuelalmeida.cryptocurrencyandroidcompose
+package com.samuelalmeida.cryptocurrencyandroidcompose.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.samuelalmeida.cryptocurrencyandroidcompose.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
