@@ -18,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.flowlayout.FlowRow
 import com.samuelalmeida.cryptocurrencyandroidcompose.common.Constants.ACTIVE
 import com.samuelalmeida.cryptocurrencyandroidcompose.common.Constants.INACTIVE
+import com.samuelalmeida.cryptocurrencyandroidcompose.common.Constants.UNIDENTIFIED_MEMBERS
 import com.samuelalmeida.cryptocurrencyandroidcompose.presentation.coin_detail.components.CoinTag
 import com.samuelalmeida.cryptocurrencyandroidcompose.presentation.coin_detail.components.TeamListItem
 
@@ -78,16 +79,27 @@ fun CoinDetailScreen(
                         style = MaterialTheme.typography.h3
                     )
                     Spacer(modifier = Modifier.height(15.dp))
-
                 }
-                items(coin.team) { teamMember ->
-                    TeamListItem(
-                        teamMember = teamMember,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    )
-                    Divider()
+                when(coin.team.isEmpty()) {
+                    false -> {
+                        items(coin.team) { teamMember ->
+                            TeamListItem(
+                                teamMember = teamMember,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp)
+                            )
+                            Divider()
+                        }
+                    }
+                    true -> {
+                        item {
+                            Text(
+                                text = UNIDENTIFIED_MEMBERS,
+                                style = MaterialTheme.typography.body2
+                            )
+                        }
+                    }
                 }
             }
         }

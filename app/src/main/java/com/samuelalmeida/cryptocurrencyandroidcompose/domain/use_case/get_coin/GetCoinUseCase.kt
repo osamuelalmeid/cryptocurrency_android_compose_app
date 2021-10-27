@@ -1,5 +1,7 @@
 package com.samuelalmeida.cryptocurrencyandroidcompose.domain.use_case.get_coin
 
+import com.samuelalmeida.cryptocurrencyandroidcompose.common.Constants.MESSAGE_ERROR_CONNECTION
+import com.samuelalmeida.cryptocurrencyandroidcompose.common.Constants.MESSAGE_ERROR_UNEXPECTED
 import com.samuelalmeida.cryptocurrencyandroidcompose.common.Resource
 import com.samuelalmeida.cryptocurrencyandroidcompose.data.remote.dto.toCoinDetail
 import com.samuelalmeida.cryptocurrencyandroidcompose.domain.model.CoinDetail
@@ -19,9 +21,9 @@ class GetCoinUseCase @Inject constructor(
             val coin = repository.getCoinById(coinId).toCoinDetail()
             emit(Resource.Success<CoinDetail>(coin))
         } catch (e: HttpException) {
-            emit(Resource.Error<CoinDetail>(e.localizedMessage ?: "An unexpected error occured"))
+            emit(Resource.Error<CoinDetail>(e.localizedMessage ?: MESSAGE_ERROR_UNEXPECTED))
         } catch (e: IOException) {
-            emit(Resource.Error<CoinDetail>("Couldn't reach server. Check your internet connection."))
+            emit(Resource.Error<CoinDetail>(MESSAGE_ERROR_CONNECTION))
         }
     }
 }
